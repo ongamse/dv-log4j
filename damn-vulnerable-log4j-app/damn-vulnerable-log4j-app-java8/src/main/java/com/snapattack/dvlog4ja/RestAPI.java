@@ -18,9 +18,11 @@ public class RestAPI {
     @GET
     @Path("/user")
     public Response user(@HeaderParam("user-agent") String userAgent){
-        logger.info("User Agent: " + userAgent);
+        // Sanitize the user agent string to remove any potential log entry injection
+        String sanitizedUserAgent = userAgent.replace("\n", "").replace("\r", "");
+        logger.info("User Agent: " + sanitizedUserAgent);
         return Response
-                .ok("User Agent: " + userAgent + "\n")
+                .ok("User Agent: " + sanitizedUserAgent + "\n")
                 .build();
     }
     
