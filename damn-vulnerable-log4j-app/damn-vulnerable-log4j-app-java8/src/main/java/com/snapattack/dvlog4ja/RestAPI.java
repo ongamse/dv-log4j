@@ -38,9 +38,10 @@ public class RestAPI {
     @POST
     @Path("/post")
     public Response postParam(String post){
-        logger.info("POST: " + post);
+        String safePost = post.replaceAll("[^a-zA-Z0-9 ]", ""); // Simple sanitization
+        logger.info("POST: " + safePost);
         return Response
-                .ok("POST: " + post + "\n")
+                .ok("POST: " + safePost + "\n")
                 .build();
     }
     
