@@ -10,12 +10,28 @@ import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+public class LogForge {
+    private static final Logger logger = LogManager.getLogger(LogForge.class);
+
+    public void logUserInput(String userInput) {
+        // Sanitize the user input before logging
+        String sanitizedInput = sanitizeInput(userInput);
+        
+        logger.info("User input: " + sanitizedInput);
+    }
+
+    private String sanitizeInput(String input) {
+        // Perform input sanitization here
+        // For example, strip out any characters that could be used for injection
+        return input.replaceAll("[^a-zA-Z0-9]", "");
+    }
+}
 @Path("vulnerable")
 public class RestAPI {
     
     private static final Logger logger = LogManager.getLogger();
     
-    @GET
+    @@GET
     @Path("/user")
     public Response user(@HeaderParam("user-agent") String userAgent){
         // Sanitize the user agent string to remove any potential log entry injection
