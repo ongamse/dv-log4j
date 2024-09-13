@@ -30,7 +30,7 @@ jobs:
         java-version: 11
 
     - name: Package with Maven
-      run: mvn clean package damn-vulnerable-log4j-app/damn-vulnerable-log4j-app-java8/
+      run: mvn --file damn-vulnerable-log4j-app/damn-vulnerable-log4j-app-java8/pom.xml clean package 
 
     - name: NextGen Static Analysis
       run: ${GITHUB_WORKSPACE}/sl analyze --app damn-vulnerable-log4j --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --vcs-prefix-correction "io/shiftleft=src/main/java/" --javasrc damn-vulnerable-log4j-app/damn-vulnerable-log4j-app-java8/.
