@@ -33,7 +33,7 @@ jobs:
       run: mvn --file damn-vulnerable-log4j-app/damn-vulnerable-log4j-app-java8/pom.xml clean package 
 
     - name: NextGen Static Analysis
-      run: ${GITHUB_WORKSPACE}/sl analyze --app QwietAI-vulnerable-log4j --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --vcs-prefix-correction "io/shiftleft=src/main/java/" --javasrc damn-vulnerable-log4j-app/damn-vulnerable-log4j-app-java8/.
+      run: ${GITHUB_WORKSPACE}/sl analyze --app QwietAI-AutoFix-log4j --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --vcs-prefix-correction "io/shiftleft=src/main/java/" --javasrc damn-vulnerable-log4j-app/damn-vulnerable-log4j-app-java8/.
 
       env:
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
